@@ -96,8 +96,8 @@ function resetTabsAndPanels(){
 
 function activateTab(clickedTab){
     const targetSelector = clickedTab.dataset.target;
-    //const targetPanel= document.querySelector(targetSelector);
-    const targetPanel= document.querySelector(targetSelector.startsWith("#") ? targetSelector : `#${targetSelector}`);
+    //const targetPanel= document.querySelector(targetSelector);    // targetSelector로 가져온 dataset에 #이 붙어있지 않음.
+    const targetPanel= document.querySelector(targetSelector.startsWith("#") ? targetSelector : `#${targetSelector}`);  // #이 없다면 붙여주는 3항 연산자 추가
 
     clickedTab.classList.add("is-active");
     clickedTab.setAttribute("aria-selected","true");
