@@ -43,25 +43,39 @@
             <img src="assets/images/practice_basketball.jpg" alt="농구를 연습하는 사용자">
             <p>꾸준한 연습으로 인해 자신감 있는 플레이를 만들 수 있습니다.</p>
         </section>
+
         <section id="features">
-            <h2>
-                훈련분류
-            </h2>
-            <ul class="feature-list">
-                <li class="feature-card">
-                    <h3>규칙</h3>
-                    <p>기본적인 규칙을 익히고 세부적인 규칙은 대한민국 농구협회 규칙서를 참고합니다.</p>            
-                </li>
-                <li class="feature-card">
-                    <h3>기본기</h3>
-                    <p>기본기로 볼 수 있는 드리블, 패스, 슛 훈련을 매일 꾸준히 하며 자신감과 실력을 기릅니다.</p>
-                        
-                </li>
-                <li class="feature-card">
-                    <h3>체력</h3>
-                    <p>농구는 공격과 수비를 모두 해야하는 운동입니다. 체력을 향상시켜 더 많은 기회를 만듭니다.</p>                        
-                </li>
-            </ul>
+            <h2>훈련분류</h2>
+
+            <div class="tabs" role="tablist" aria-label="기능 선택">
+                <button id="tab-rules" class="tab is-active" type="button" role="tab" aria-selected="true" aria-controls="feature-rules" data-target="feature-rules">
+                    규칙
+                </button>
+                                
+                <button id="tab-basic" class="tab" type="button" role="tab" aria-selected="false" aria-controls="feature-basic" data-target="feature-basic">
+                    기본기
+                </button>
+
+                <button id="tab-phsics" class="tab" type="button" role="tab" aria-selected="false" aria-controls="feature-phsics" data-target="feature-phsics">
+                    체력
+                </button>
+            </div>
+
+            <div id="feature-rules" class="panel is-active" role="tabpanel" aria-labelledby="tab-rules">
+                <h3>규칙</h3>
+                <p>기본적인 규칙을 익히고 세부적인 규칙은 대한민국 농구협회 규칙서를 참고합니다.</p>
+            </div>
+
+            <div id="feature-basic" class="panel" role="tabpanel" aria-labelledby="tab-basic" hidden>
+                <h3>기본기</h3>
+                <p>기본기로 볼 수 있는 드리블, 패스, 슛 훈련을 매일 꾸준히 하며 자신감과 실력을 기릅니다.</p>
+            </div>
+
+            <div id="feature-phsics" class="panel" role="tabpanel" aria-labelledby="tab-phsics" hidden>
+                <h3>체력</h3>
+                <p>농구는 공격과 수비를 모두 해야하는 운동입니다. 체력을 향상시켜 더 많은 기회를 만듭니다.</p>
+            </div>
+            
         </section>
         <section id="steps">
             <h2>훈련 방법</h2>
@@ -77,6 +91,39 @@
                 </li>
             </ol>
         </section>
+
+        <scetion id="event-practice">
+            <h2> 훈련 준비 설정 </h2>
+            
+            <div class="event-grid">
+                <article class="event-card">
+                    <h3>화면 테마</h3>
+                    <button id="themeButton" type="button">다크 테마로 바꾸기</button>
+                </article>
+
+                <article class="event-card">
+                    <h3>참가자 정보</h3>
+                    <label for="nickname">참가자 이름</label>
+                    <input type="text" id="nickname" maxlength="10">
+                    <p id="nicknameCount" aria-live="polite">0 / 10</p>
+                </article>
+
+                <article class="event-card">
+                    <h3>녹화 활용 동의</h3>
+                    <label for="agree-row">
+                        <input type="checkbox" id="agreeCheck">
+                        영상 분석을 위한 녹화 활용에 동의합니다.
+                    </label>
+                    <p id="agreeMessage" aria-live="polite">
+                        동의 후 훈련을 시작할 수 있습니다.
+                    </p>
+                    <button id="startButton" type="button" disabled>
+                        훈련 시작하기
+                    </button>
+                </article>
+            </div>
+        </scetion>
+
         <section id="subscribe" class="subscribe-card">
             <h2> 훈련 소식 받기 </h2>
             <form id="subscribe-form">
