@@ -208,7 +208,6 @@ optionNext.addEventListener("click",()=>{
         const count = document.querySelector('input[name="qna-count"]:checked');
         formData.qnaCount = count.value;
     } else {    // 질의 응답을 체크하지 않은 경우
-        formData.qna = !qnaOption.checked;
         formData.qnaCount = "0";
     }
     formData.duration = durationValues[durationRange.value];    
