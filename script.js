@@ -133,10 +133,10 @@ const restartButton = document.querySelector("#restart-button");
 const summaryTitle = document.querySelector("#summary-title");
 const summaryDuration = document.querySelector("#summary-duration");
 const summaryQna = document.querySelector("#summary-qna");
-const durationValues = ["3","5","10"];
+const durationValues = ["30","45","60"];
 
 const formData = {
-    title:"", duration:"5", qna:false, qnaCount: "2"
+    title:"", duration:"30", qna:false, qnaCount: "2"
 };
 
 function showStep(index){
@@ -203,21 +203,27 @@ qnaOption.addEventListener("change", () =>{
 
 optionPrev.addEventListener("click",()=> showStep(0));
 optionNext.addEventListener("click",()=>{
-    formData.duration = durationValues[durationRange.value];
-    formData.qna = qnaOption.checked;
-    const count = document.querySelector('input[name="qna-count"]:checked');
-    formData.qnaCount = count.value;
+    if(qnaOption.checked){  // 질의 응답을 체크한 경우
+        formData.qna = qnaOption.checked;
+        const count = document.querySelector('input[name="qna-count"]:checked');
+        formData.qnaCount = count.value;
+    } else {    // 질의 응답을 체크하지 않은 경우
+        formData.qna = !qnaOption.checked;
+        formData.qnaCount = "0";
+    }
+    formData.duration = durationValues[durationRange.value];    
     summaryTitle.textContent = formData.title;
     summaryDuration.textContent = formData.duration + "분";
     summaryQna.textContent = formData.qna ? formData.qnaCount + "개 포함" : "미포함";
     showStep(2);
+    
 });
 
 summaryPrev.addEventListener("click", ()=> showStep(1));
 finishButton.addEventListener("click", () => showStep(3));
 restartButton.addEventListener("click", ()=> {
     formData.title = "";
-    formData.duration = "5";
+    formData.duration = "30";
     formData.qna = false;
     formData.qnaCount="";
 
@@ -226,7 +232,7 @@ restartButton.addEventListener("click", ()=> {
     titleInput.classList.remove("has-error");
     
     durationRange.value = "1";
-    durationValue.value = "5분";
+    durationValue.value = "30분";
     
     qnaOption.checked = false;
     qnaOptions.hidden = true;    
