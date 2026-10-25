@@ -242,3 +242,149 @@ restartButton.addEventListener("click", ()=> {
     summaryQna.textContent="";
     showStep(0);
 });
+
+// 중간고사 추가 
+const startSessionBtn = document.querySelector("#start-session-button");
+const sessionActiveTitle = document.querySelector("#session-active-title");
+const sessionStatusTag = document.querySelector("#session-status-tag");
+const sessionTargetTime = document.querySelector("#session-target-time");
+const toggleSessionBtn = document.querySelector("#toggle-session-btn");
+
+const drillChecks = document.querySelectorAll(".drill-check");
+const drillProgress = document.querySelector("#drill-progress");
+
+const sessionMemo = document.querySelector("#session-memo");
+const memoError = document.querySelector("#memo-error");
+const saveLogBtn = document.querySelector("#save-log-btn");
+
+const logList = document.querySelector("#log-list");
+const logCount = document.querySelector("#log-count");
+const logEmptyMsg = document.querySelector("#log-empty-msg");
+
+const backToCompleteBtn = document.querySelector("#back-to-complete-btn");
+const finalResetBtn = document.querySelector("#final-reset-button");
+
+// 훈련 실행 데이터
+let isSessionRunning = true;
+const sessionLogs = [];
+
+
+if(startSessionBtn) {
+    startSessionBtn.addEventListener("click", () => {
+        sessionActiveTitle.textContent = `[${formData.title}] 훈련 진행 중`;
+        sessionTargetTime.textContent = `${formData.duration}분`;
+        isSessionRunning = true;
+        updateSessionStatusUI();
+        showStep(4);
+    });
+}
+
+// 2. 훈련 일시정지 / 재개 버튼 상태 토글
+function updateSessionStatusUI() {
+    if(isSessionRunning) {
+        sessionStatusTag.textContent = "진행 중";
+        sessionStatusTag.className = "status-badge running";
+        toggleSessionBtn.textContent = "훈련 일시정지";
+    } else {
+        sessionStatusTag.textContent = "일시정지됨";
+        sessionStatusTag.className = "status-badge paused";
+        toggleSessionBtn.textContent = "훈련 재개";
+    }
+}
+
+if(toggleSessionBtn) {
+    toggleSessionBtn.addEventListener("click", () => {
+        isSessionRunning = !isSessionRunning;
+        updateSessionStatusUI();
+    });
+}
+
+// 3. 기본기 드릴 체크박스 선택 시 진척도 갱신
+function updateDrillProgress() {
+    const total = drillChecks.length;
+    let checkedCount = 0;
+    drillChecks.forEach(cb => { if(cb.checked) checkedCount++; });
+
+    const percent = Math.round((checkedCount / total) * 100);
+    drillProgress.textContent = `${percent}%`;
+}
+
+drillChecks.forEach(cb => {
+    cb.addEventListener("change", updateDrillProgress);
+});
+
+// 4. 훈련 일지 저장 및 피드백/검증
+function renderLogs() {
+    logList.innerHTML = "";
+    logCount.textContent = sessionLogs.length;
+
+    if(sessionLogs.length === 0) {
+        logEmptyMsg.hidden = false;
+    } else {
+        logEmptyMsg.hidden = true;
+        sessionLogs.forEach((logText, index) => {
+            const li = document.createElement("li");
+            li.className = "log-item";
+            li.innerHTML = `
+                <span>${logText}</span>
+                <button type="button" class="delete-btn" data-index="${index}">삭제</button>
+            `;
+            
+            // 일지 삭제 기능 (상태 변경 및 취소)
+            li.querySelector(".delete-btn").addEventListener("click", (e) => {
+                const targetIdx = parseInt(e.target.dataset.index, 10);
+                sessionLogs.splice(targetIdx, 1);
+                renderLogs();
+            });
+
+            logList.appendChild(li);
+        });
+    }
+}
+
+function validateAndSaveLog() {
+    const memoValue = sessionMemo.value.trim();
+
+    // 조건 검증 1: 빈 내용 처리
+    if(!memoValue) {
+        memoError.textContent = "메모 내용을 입력해 주세요.";
+        sessionMemo.classList.add("has-error");
+        sessionMemo.focus();
+        return;
+    }
+
+    memoError.textContent = "";
+    sessionMemo.classList.remove("has-error");
+
+    // 정상 저장
+    sessionLogs.push(memoValue);
+    sessionMemo.value = "";
+    renderLogs();
+}
+
+if(saveLogBtn) {
+    saveLogBtn.addEventListener("click", validateAndSaveLog);
+}
+
+// 5. 완료 화면 복귀 (상태 유지) 및 완전 초기화
+if(backToCompleteBtn) {
+    backToCompleteBtn.addEventListener("click", () => {
+        showStep(3); // Step 4로 복귀 (입력값 유지)
+    });
+}
+
+if(finalResetBtn) {
+    finalResetBtn.addEventListener("click", () => {
+        // 모든 신규 데이터 초기화
+        sessionLogs.length = 0;
+        drillChecks.forEach(cb => cb.checked = false);
+        updateDrillProgress();
+        renderLogs();
+        sessionMemo.value = "";
+        memoError.textContent = "";
+        sessionMemo.classList.remove("has-error");
+
+        resetFormData();
+        showStep(0); // Step 1로 이동
+    });
+}
