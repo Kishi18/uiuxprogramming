@@ -1,260 +1,175 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width", initial-scale="1.0">
-    <title>How to improve at basketball</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="발표 제목과 시간을 정하고 훈련 계획을 보관하는 Re:hear 수업용 프로토타입">
+  <title>Re:hear | 발표 훈련 계획</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=20260925-2">
+  <script src="script.js?v=20260925-2" defer></script>
 </head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Re:hear 맨 위로"><img src="assets/images/rehear-wordmark.png" alt="Re:hear" width="512" height="124"></a>
+      <nav aria-label="주요 메뉴">
+        <a href="#about">이용 방법</a>
+        <a href="#planner">계획 만들기</a>
+        <a href="#archive">내 계획</a>
+      </nav>
+      <button id="theme-button" class="theme-button" type="button" aria-pressed="false">다크 모드</button>
+    </div>
+  </header>
 
-<body>    
-    <!-- 
-    사용자 : 농구 실력을 향상시키고 체계적으로 훈련하고 싶은 사람
-    목적 : 5대5 농구시합을 위한 기본기와 자신있는 플레이 만들기
-    핵심 행동 : 반복적인 기본기 훈련과 체력 기르기
-    정보 순서: 소개 → 목적 → 방법 → 상세 → 농구시합 참여 장려
-    -->
-    <header>
-        <h1>농구 실력 향상 서비스</h1>
-        <p>생활체육 5대5 농구는 규칙, 기본기가 갖춰지면 누구나 함께 할 수 있습니다.</p>
+  <main id="top">
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Practice. Feedback. Real Growth.</p>
+        <h1 id="hero-title">첫 번째 발표 연습을<br><em>계획해 보세요.</em></h1>
+        <p class="hero-description">발표 제목과 연습 시간을 정하고, 완성한 계획을 보관하세요. 다시 열어 확인하거나 필요 없어진 계획은 취소할 수 있습니다.</p>
+        <a class="button button-primary" href="#planner">새 훈련 계획 만들기 <span aria-hidden="true">↗</span></a>
+        <p class="hero-note">수업용 중간 프로토타입입니다. 녹음과 실제 발표 훈련은 시작되지 않습니다.</p>
+      </div>
+      <figure class="hero-image">
+        <img src="assets/images/service.png" alt="가상 청중 앞에서 발표를 연습하는 장면" width="1920" height="1080">
+        <figcaption>Re:hear 서비스 콘셉트 이미지</figcaption>
+      </figure>
+    </section>
 
-        <nav aria-label="주요 메뉴">
-            <a href="#about">서비스 소개</a>
-            <a href="#features">훈련분류</a>
-            <a href="#steps">훈련 방법</a>
-            <a href="#subscribe">훈련 소식 받기</a>
-        </nav>
-    </header>
+    <section id="about" class="section container" aria-labelledby="about-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">HOW IT WORKS</p><h2 id="about-title">간단한 세 단계로 시작해요.</h2></div>
+        <p>발표를 준비하는 사람이 연습 계획을 만들고 관리하는 흐름입니다.</p>
+      </div>
+      <ol class="how-list">
+        <li><span class="how-number">01</span><h3>발표 정보</h3><p>발표 제목과 발표자 이름을 입력해요.</p></li>
+        <li><span class="how-number">02</span><h3>훈련 조건</h3><p>연습 시간과 질의응답 포함 여부를 골라요.</p></li>
+        <li><span class="how-number">03</span><h3>저장과 관리</h3><p>계획을 보관하고 다시 열거나 취소해요.</p></li>
+      </ol>
+    </section>
 
-    <main>
-        <section id="about">
-            <h2>
-                서비스 소개
-            </h2>
-            <h3>
-                재밌는 농구 경기를 하기 위해 필요한 가장 쉬운 첫걸음
-            </h3>
-
-            <img src="assets/images/practice_basketball.jpg" alt="농구를 연습하는 사용자">
-            <p>꾸준한 연습으로 인해 자신감 있는 플레이를 만들 수 있습니다.</p>
-        </section>
-
-        <section id="features">
-            <h2>훈련분류</h2>
-
-            <div class="tabs" role="tablist" aria-label="기능 선택">
-                <button id="tab-rules" class="tab is-active" type="button" role="tab" aria-selected="true" aria-controls="feature-rules" data-target="feature-rules">
-                    규칙
-                </button>
-                                
-                <button id="tab-basic" class="tab" type="button" role="tab" aria-selected="false" aria-controls="feature-basic" data-target="feature-basic">
-                    기본기
-                </button>
-
-                <button id="tab-phsics" class="tab" type="button" role="tab" aria-selected="false" aria-controls="feature-phsics" data-target="feature-phsics">
-                    체력
-                </button>
-            </div>
-
-            <div id="feature-rules" class="panel is-active" role="tabpanel" aria-labelledby="tab-rules">
-                <h3>규칙</h3>
-                <p>기본적인 규칙을 익히고 세부적인 규칙은 대한민국 농구협회 규칙서를 참고합니다.</p>
-            </div>
-
-            <div id="feature-basic" class="panel" role="tabpanel" aria-labelledby="tab-basic" hidden>
-                <h3>기본기</h3>
-                <p>기본기로 볼 수 있는 드리블, 패스, 슛 훈련을 매일 꾸준히 하며 자신감과 실력을 기릅니다.</p>
-            </div>
-
-            <div id="feature-phsics" class="panel" role="tabpanel" aria-labelledby="tab-phsics" hidden>
-                <h3>체력</h3>
-                <p>농구는 공격과 수비를 모두 해야하는 운동입니다. 체력을 향상시켜 더 많은 기회를 만듭니다.</p>
-            </div>
-            
-        </section>
-        <section id="steps">
-            <h2>훈련 방법</h2>
-            <ol>
-                <li>
-                    드리블 : 공을 튀기는 바닥을 보지 않도록 신경쓰며 강하게 드리블을 치는게 포인트 입니다. 질보다 양으로 승부합시다.
-                </li>
-                <li>
-                    패스 : 친구와 함께 체스트, 바운드, 원핸드, 오버헤드 등 다양한 패스를 연습합니다. 친구가 없다면 단단한 벽에 연습해도 OK
-                </li>
-                <li>
-                    슛 : 슛은 림에서 가장 가까운 위치에서 시작합니다. 레이업, 자유투 등 다양한 방법이 있습니다. 드리블과 패스 후 힘이 빠진 상태에서 연습하면 효과적입니다.
-                </li>
-            </ol>
-        </section>
-
-        <scetion id="event-practice">
-            <h2> 훈련 준비 설정 </h2>
-            
-            <div class="event-grid">
-                <article class="event-card">
-                    <h3>화면 테마</h3>
-                    <button id="themeButton" type="button">다크 테마로 바꾸기</button>
-                </article>
-
-                <article class="event-card">
-                    <h3>참가자 정보</h3>
-                    <label for="nickname">참가자 이름</label>
-                    <input type="text" id="nickname" maxlength="10">
-                    <p id="nicknameCount" aria-live="polite">0 / 10</p>
-                </article>
-
-                <article class="event-card">
-                    <h3>녹화 활용 동의</h3>
-                    <label for="agree-row">
-                        <input type="checkbox" id="agreeCheck">
-                        영상 분석을 위한 녹화 활용에 동의합니다.
-                    </label>
-                    <p id="agreeMessage" aria-live="polite">
-                        동의 후 훈련을 시작할 수 있습니다.
-                    </p>
-                    <button id="startButton" type="button" disabled>
-                        훈련 설정 시작하기
-                    </button>
-                </article>
-            </div>
-        </scetion>
-
-        <dialog id="recording-dialog" aria-labelledby="recording-title" aria-describedby="recording-description">
-            <h2 id="recording-title">녹화 및 영상 활용 안내</h2>
-            <p id="recording-description">농구 훈련에 녹화 기능을 활용할 수 있습니다. 지금은 훈련 조건만 설정하며 녹화는 시작되지 않습니다.</p>
-            <div class="dialog-actions">
-                <button id="recording-cancel" type="button">돌아가기</button>
-                <button id="recording-confirm" type="button">동의하고 설정 시작하기</button>
-            </div>
-        </dialog>
-
-        <section id="training-flow" class="training-flow" hidden>
-            <h2>농구 훈련 설정</h2>
-            <p class="progress" aria-label="설정 진행 단계">
-                <span class="progress_item">1 - 정보</span>
-                <span class="progress_item">2 - 조건</span>
-                <span class="progress_item">3 - 확인</span>
-            </p>
-
-            <section class="step" data-step="1" hidden>
-                <h3>훈련 정보를 입력해주세요.</h3>
-                <label for="training-title">농구 훈련 제목</label>
-                <input id="training-title" type="text" placeholder="예 : 나의 농구 훈련" aria-describedby="title-error">
-                <p id="title-error" class="error-message" aria-live="polite"></p>
-                <button id="title-next" type="button">훈련 조건 선택하기</button>
-            </section>
-
-            <section class="step" data-step="2" hidden>
-                <h3>훈련 조건을 선택해 주세요.</h3>
-                <label for="duration-range">훈련 시간</label>
-                <input id="duration-range" type="range" min="0" max="2" step="1" value="0">
-                <output id="duration-value" for="duration-range">30분</output>
-                <label><input type="checkbox" id="qna-option">질의응답 포함</label>
-                <fieldset id="qna-options" hidden>
-                    <legend>질문 수</legend>
-                    <label><input type="radio" name="qna-count" value="1">1개</label>
-                    <label><input type="radio" name="qna-count" value="2">2개</label>
-                    <label><input type="radio" name="qna-count" value="3">3개</label>
-                </fieldset>
-                <div class="step-action">
-                    <button id="option-prev" type="button">이전</button>
-                    <button id="option-next" type="button">내용 확인하기</button>
+    <section id="planner" class="section container" aria-labelledby="planner-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">NEW SESSION</p><h2 id="planner-title">발표 훈련 계획 만들기</h2></div>
+        <p>이전 단계로 돌아가도 입력한 내용은 유지됩니다.</p>
+      </div>
+      <div class="planner-card">
+        <ol class="progress" aria-label="계획 설정 진행 단계">
+          <li class="progress-item is-current" aria-current="step"><span>1</span> 발표 정보</li>
+          <li class="progress-item"><span>2</span> 훈련 조건</li>
+          <li class="progress-item"><span>3</span> 내용 확인</li>
+        </ol>
+        <form id="plan-form" novalidate>
+          <div class="flow-step" data-step="1">
+            <p class="step-kicker">STEP 01 / 발표 정보</p>
+            <h3>어떤 발표를 준비하나요?</h3>
+            <p class="step-description">계획을 다시 찾을 수 있도록 제목을 적어 주세요.</p>
+            <div class="field" id="title-field">
+                <label for="presentation-title">발표 제목 <span class="required">필수</span></label>
+                <input id="presentation-title" name="title" type="text" minlength="2" maxlength="60" required placeholder="예: 다음 주 프로젝트 발표"
+                     aria-describedby="title-help title-count title-error">
+                <div class="field-meta">
+                    <p id="title-help" class="field-help">발표를 구분할 수 있도록 2자 이상 입력해 주세요.</p>
+                    <p id="title-count" class="field-count" aria-live="polite">0 / 60자</p>
                 </div>
-            </section>
+                <p id="title-error" class="field-error" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="nickname">발표자 이름 <span class="optional">선택</span></label>
+              <input id="nickname" name="nickname" type="text" maxlength="10" placeholder="예: 민지" aria-describedby="nickname-count">
+              <p id="nickname-count" class="field-help" aria-live="polite">0 / 10자</p>
+            </div>
+            <div class="step-actions step-actions-end"><button id="info-next" class="button button-primary" type="button">훈련 조건 선택하기 <span aria-hidden="true">→</span></button></div>
+          </div>
 
-            <section class="step" data-step="3" hidden>
-                <h3>입력한 내용을 확인해 주세요.</h3>
-                <div class="summary-list">
-                    <div><span>훈련 제목</span><strong id="summary-title"></strong></div>
-                    <div><span>훈련 시간</span><strong id="summary-duration"></strong></div>
-                    <div><span>질의 응답</span><strong id="summary-qna"></strong></div>
-                </div>
-                <div class="step-actions">
-                    <button id="summary-prev" type="button">수정하기</button>
-                    <button id="finish-button" type="button">설정 완료하기</button>
-                </div>
-            </section>
-
-            <section class="step complete-step" data-step="4" hidden>
-                <h3>훈련 설정이 완료되었습니다.</h3>
-                <p>설정한 내용을 확인했습니다. 필요하면 다시 설정할 수 있습니다.</p>                
-                <!-- 중간고사 추가 -->
-                <div class="step-actions">
-                    <button id="start-session-button" type="button" class="btn-highlight">훈련 시작하기 (신규 기능)</button>
-                    <button id="restart-button" type="button">다시 설정하기</button>
-                </div>
-            </section>
-                  
-            <!-- 중간고사 추가 -->
-            <section class="step execute-step" data-step="5" hidden>
-                <div class="session-header">
-                    <h3 id="session-active-title">훈련 진행 중</h3>
-                    <span id="session-status-tag" class="status-badge running">진행 중</span>
-                </div>
-
-                <div class="timer-box">
-                    <span>목표 훈련 시간: <strong id="session-target-time">30분</strong></span>
-                    <button id="toggle-session-btn" type="button">훈련 일시정지</button>
-                </div>
-
-                <div class="drill-checklist">
-                    <h4>기본기 드릴 달성 체크</h4>
-                    <div class="drill-items">
-                        <label><input type="checkbox" class="drill-check" value="드리블 훈련"> 1. 드리블 훈련 (양손 강하게)</label>
-                        <label><input type="checkbox" class="drill-check" value="패스 연습"> 2. 패스 연습 (체스트/바운드)</label>
-                        <label><input type="checkbox" class="drill-check" value="슛 연습"> 3. 림 근처 슛 & 자유투</label>
+          <div class="flow-step" data-step="2" hidden>
+            <p class="step-kicker">STEP 02 / 훈련 조건</p>
+            <h3>어떻게 연습할까요?</h3>
+            <p class="step-description">예상 발표 시간과 질문 연습 여부를 선택하세요.</p>
+            <fieldset class="field choice-fieldset">
+              <legend>발표 시간</legend>
+              <div class="duration-options">
+                <label class="choice-card"><input type="radio" name="duration" value="3"><span><strong>3분</strong><small>짧게 핵심만</small></span></label>
+                <label class="choice-card"><input type="radio" name="duration" value="5" checked><span><strong>5분</strong><small>기본 연습</small></span></label>
+                <label class="choice-card"><input type="radio" name="duration" value="10"><span><strong>10분</strong><small>충분히 설명</small></span></label>
+              </div>
+            </fieldset>
+            <div class="field qna-field">
+                <label class="check-row" for="qna-option">
+                    <input id="qna-option" name="qna" type="checkbox" value="included" aria-controls="qna-options" aria-expanded="false">
+                    <span><strong>질의응답도 연습할게요</strong><small>발표 뒤에 받을 질문 수를 정할 수 있습니다.</small></span>
+                </label>
+                <fieldset id="qna-options" class="qna-options" hidden>
+                    <legend>예상 질문 수</legend>
+                    <div class="inline-options">
+                        <label><input type="radio" name="qna-count" value="1" disabled> 1개</label>
+                        <label><input type="radio" name="qna-count" value="2" checked disabled> 2개</label>
+                        <label><input type="radio" name="qna-count" value="3" disabled> 3개</label>
                     </div>
-                    <p class="progress-text">기본기 진행률: <strong id="drill-progress">0%</strong></p>
+                </fieldset>
                 </div>
+            <div class="step-actions">
+              <button id="option-prev" class="button button-secondary" type="button">이전 단계</button>
+              <button id="option-next" class="button button-primary" type="button">내용 확인하기 <span aria-hidden="true">→</span></button>
+            </div>
+          </div>
 
-                <div class="log-input-box">
-                    <h4>훈련 피드백 / 세션 메모 작성</h4>
-                    <label for="session-memo">오늘 훈련 중 느낀점이나 보완점</label>
-                    <input id="session-memo" type="text" placeholder="예: 드리블 시 시선처리를 위해 강하게 칠 것" aria-describedby="memo-error">
-                    <p id="memo-error" class="error-message" aria-live="polite"></p>
-                    <button id="save-log-btn" type="button">훈련 일지 저장하기</button>
-                </div>
+          <div class="flow-step" data-step="3" hidden>
+            <p class="step-kicker">STEP 03 / 내용 확인</p>
+            <h3>이 계획으로 저장할까요?</h3>
+            <p class="step-description">내용을 확인한 뒤 저장하세요. 수정 버튼으로 해당 단계로 돌아갈 수 있습니다.</p>
+            <dl class="summary-list">
+              <div><dt>발표 제목</dt><dd id="summary-title"></dd></div>
+              <div><dt>발표자</dt><dd id="summary-nickname"></dd></div>
+              <div><dt>발표 시간</dt><dd id="summary-duration"></dd></div>
+              <div><dt>질의응답</dt><dd id="summary-qna"></dd></div>
+            </dl>
+            <div class="step-actions">
+              <div class="edit-actions">
+                <button id="edit-info" class="button button-text" type="button">정보 수정</button>
+                <button id="edit-options" class="button button-text" type="button">조건 수정</button></div>
+                <button id="save-plan" class="button button-primary" type="submit">계획 저장하기 <span aria-hidden="true">→</span></button>
+            </div>
+            <p id="submit-status" class="submit-status" role="status" aria-live="polite"></p>
+          </div>
 
-                <div class="log-history-box">
-                    <h4>저장된 훈련 기록 (<span id="log-count">0</span>건)</h4>
-                    <ul id="log-list" class="log-list">
-                        <!-- JS로 동적 생성 -->
-                    </ul>
-                    <p id="log-empty-msg" class="empty-state">아직 저장된 훈련 메모가 없습니다.</p>
-                </div>
+          <div class="flow-step complete-step" data-step="4" hidden>
+            <div class="complete-mark" aria-hidden="true">✓</div>
+            <p class="step-kicker">계획 저장 완료</p>
+            <h3>훈련 계획을 보관했어요.</h3>
+            <p id="complete-message">내 계획에서 다시 열어볼 수 있습니다.</p>
+            <div class="complete-actions"><a class="button button-primary" href="#archive">내 계획 보기 <span aria-hidden="true">↗</span></a><button id="restart-button" class="button button-secondary" type="button">새 계획 만들기</button></div>
+          </div>
+        </form>
+      </div>
+    </section>
 
-                <div class="step-actions">
-                    <button id="back-to-complete-btn" type="button">완료 화면으로 돌아가기</button>
-                    <button id="final-reset-button" type="button">처음 설정으로 돌아가기</button>
-                </div>
-            </section>
-        </section>
+    <section id="archive" class="section container archive-section" aria-labelledby="archive-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">MY PRACTICE</p><h2 id="archive-title">내 훈련 계획 <span id="plan-count" class="count-badge">0</span></h2></div>
+        <p>저장한 계획을 다시 열거나 취소할 수 있습니다. 내용은 이 브라우저에만 보관됩니다.</p>
+      </div>
+      <p id="archive-status" class="archive-status" role="status" aria-live="polite"></p>
+      <div id="empty-state" class="empty-state"><span class="empty-icon" aria-hidden="true">↗</span><h3>아직 저장한 계획이 없어요.</h3><p>첫 발표 훈련 계획을 만들면 이곳에서 다시 볼 수 있습니다.</p><a class="button button-secondary" href="#planner">계획 만들러 가기</a></div>
+      <ul id="plan-list" class="plan-list" aria-label="저장한 훈련 계획" hidden></ul>
+    </section>
+  </main>
 
-        <section id="subscribe" class="subscribe-card">
-            <h2> 훈련 소식 받기 </h2>
-            <form id="subscribe-form">
-                <label for="email">이메일</label>
-                <input type="email" id="email" name="email">
-                <button id="subscribeButton" type="submit">훈련 소식 신청하기</button>
-            </form>
+  <dialog id="plan-dialog" class="plan-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-top"><p class="eyebrow">저장한 계획</p><button id="dialog-close" class="icon-button" type="button" aria-label="닫기">×</button></div>
+    <h2 id="dialog-title"></h2>
+    <p id="dialog-status" class="dialog-status"></p>
+    <dl class="summary-list">
+      <div><dt>발표자</dt><dd id="dialog-nickname"></dd></div>
+      <div><dt>발표 시간</dt><dd id="dialog-duration"></dd></div>
+      <div><dt>질의응답</dt><dd id="dialog-qna"></dd></div>
+    </dl>
+    <button id="dialog-done" class="button button-primary" type="button">확인했어요</button>
+  </dialog>
 
-            <p id="subscribeMessage" aria-live="polite">
-                이메일을 입력한 뒤 신청해주세요
-            </p>
-            
-        </section>
-    </main>
-
-    <footer>
-        <small>2026 농구 훈련 서비스</small>
-    </footer>
-
-    <script src="script.js"></script>
+  <footer class="site-footer"><div class="container"><span class="brand"><img src="assets/images/rehear-wordmark.png" alt="Re:hear" width="512" height="124"></span><small>발표 훈련 계획 프로토타입 · 2026</small></div></footer>
 </body>
-
 </html>
