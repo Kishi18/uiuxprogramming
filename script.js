@@ -279,6 +279,10 @@ function updateCurrentNav() {
       link.removeAttribute("aria-current");
     }
   });
+
+  const currentLink = document.querySelector('.main-nav a[aria-current="page"]');
+  const pageName = currentLink ? currentLink.textContent.trim() : "홈";
+  document.title = pageName + " | HoopLab";
 }
 
 window.addEventListener("hashchange", updateCurrentNav);
@@ -289,6 +293,15 @@ menuToggle.addEventListener("click", () => {
   const isOpen = mainNav.classList.toggle("is-open");
   menuToggle.textContent = isOpen ? "메뉴 닫기" : "메뉴 열기";
   menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape" || !mainNav.classList.contains("is-open")) return;
+
+  mainNav.classList.remove("is-open");
+  menuToggle.textContent = "메뉴 열기";
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.focus();
 });
 
 navLinks.forEach((link) => {
@@ -328,7 +341,9 @@ function renderPlans() {
     emptyDescription.textContent = hasAnyPlans
       ? "다른 종목이나 ‘전체’ 필터를 선택해 보세요."
       : "첫 농구 스킬 트레이닝 루틴을 만들면 이곳에서 바로 확인할 수 있습니다.";
-    emptyAction.hidden = hasAnyPlans;
+    emptyAction.hidden = false;
+    emptyAction.textContent = hasAnyPlans ? "전체 보기" : "루틴 만들러 가기";
+    emptyAction.href = hasAnyPlans ? "#archive" : "#planner";
   }
 
   planCount.textContent = String(visiblePlans.length);
@@ -402,7 +417,21 @@ filterButtons.forEach((button) => {
     });
 
     renderPlans();
+
+    const count = getVisiblePlans().length;
+    const filterName = button.textContent.trim();
+    archiveStatus.textContent = count > 0
+      ? `${filterName} 훈련 루틴 ${count}개가 표시됩니다.`
+      : `${filterName} 훈련 루틴이 없습니다. 다른 조건을 선택해 보세요.`;
   });
+});
+
+emptyState.querySelector("a").addEventListener("click", (event) => {
+  if (currentFilter === "all") return;
+  event.preventDefault();
+  const allButton = document.querySelector('[data-filter="all"]');
+  allButton.click();
+  allButton.focus();
 });
 
 planList.addEventListener("click", (event) => {
@@ -434,7 +463,10 @@ planList.addEventListener("click", (event) => {
   const nextButton = [...planList.querySelectorAll('button[data-action="toggle"]')].find(
     (item) => item.dataset.id === plan.id
   );
-  nextButton?.focus();
+  const selectedFilter = document.querySelector(
+    '.filter-button[aria-pressed="true"]'
+  );
+  (nextButton || selectedFilter)?.focus();
 });
 
 document.querySelector("#dialog-close").addEventListener("click", () => planDialog.close());

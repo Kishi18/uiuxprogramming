@@ -8,10 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261116-1">
+  <link rel="stylesheet" href="style.css?v=20261123-1">
   <script src="script.js?v=20261116-1" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#top">본문 바로가기</a>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="HoopLab 맨 위로">
@@ -33,7 +34,7 @@
     </div>
   </header>
 
-  <main id="top">
+  <main id="top" tabindex="-1">
     <section class="hero container" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow">DRIBBLE. SHOOT. GAME READY.</p>
@@ -81,8 +82,8 @@
               <input id="routine-title" name="title" type="text" minlength="2" maxlength="60" required placeholder="예: 투볼 드리블 및 풀업 점퍼 루틴"
                    aria-describedby="title-help title-count title-error">
               <div class="field-meta">
-                <p id="title-help" class="field-help">훈련을 구분할 수 있도록 2자 이상 입력해 주세요.</p>
-                <p id="title-count" class="field-count" aria-live="polite">0 / 60자</p>
+                <p id="title-help" class="field-help">훈련을 구분할 수 있도록 2자 이상 입력해 주세요.</p>                
+                <p id="title-count" class="field-count">0 / 60자</p>
               </div>
               <p id="title-error" class="field-error" role="alert"></p>
             </div>
@@ -197,7 +198,9 @@
   </main>
 
   <dialog id="plan-dialog" class="plan-dialog" aria-labelledby="dialog-title">
-    <div class="dialog-top"><p class="eyebrow">훈련 루틴 상세</p><button id="dialog-close" class="icon-button" type="button" aria-label="닫기">×</button></div>
+    <div class="dialog-top"><p class="eyebrow">훈련 루틴 상세</p>
+      <button id="dialog-close" class="icon-button" type="button" aria-label="훈련 루틴 상세 닫기">×</button>
+    </div>
     <h2 id="dialog-title"></h2>
     <p id="dialog-status" class="dialog-status"></p>
     <dl class="summary-list">
